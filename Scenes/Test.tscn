@@ -1,0 +1,66 @@
+[gd_scene load_steps=5 format=3 uid="uid://6jn531p7iynf"]
+
+[ext_resource type="Script" path="res://Scripts/Level.gd" id="1_6ma67"]
+[ext_resource type="PackedScene" uid="uid://cqvgg7e08360b" path="res://Scenes/Character.tscn" id="1_otgvy"]
+[ext_resource type="Script" path="res://Scripts/CameraScript.gd" id="3_5xja5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5jptb"]
+size = Vector2(400, 20)
+
+[node name="Test" type="Node2D"]
+script = ExtResource("1_6ma67")
+
+[node name="Ground" type="StaticBody2D" parent="."]
+position = Vector2(315, 321)
+collision_layer = 2
+
+[node name="ColorRect" type="ColorRect" parent="Ground"]
+offset_left = -200.0
+offset_top = -10.0
+offset_right = 200.0
+offset_bottom = 10.0
+metadata/_edit_use_anchors_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
+shape = SubResource("RectangleShape2D_5jptb")
+
+[node name="Players" type="Node2D" parent="."]
+
+[node name="Character" parent="Players" instance=ExtResource("1_otgvy")]
+position = Vector2(166, 203)
+character_name = null
+player_num = null
+collision_width = null
+collision_height = null
+collision_position = null
+crouch_collision_width = null
+
+[node name="Character2" parent="Players" instance=ExtResource("1_otgvy")]
+position = Vector2(375, 230)
+character_name = null
+player_num = 2
+collision_width = null
+collision_height = null
+collision_position = null
+crouch_collision_width = null
+
+[node name="Camera" type="Camera2D" parent="."]
+position = Vector2(320, 180)
+position_smoothing_enabled = true
+script = ExtResource("3_5xja5")
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="Hp1" type="ColorRect" parent="HUD"]
+offset_left = 30.0
+offset_top = 20.0
+offset_right = 270.0
+offset_bottom = 60.0
+color = Color(1, 0, 0, 1)
+
+[node name="Hp2" type="ColorRect" parent="HUD"]
+offset_left = 370.0
+offset_top = 20.0
+offset_right = 610.0
+offset_bottom = 60.0
+color = Color(1, 0, 0, 1)

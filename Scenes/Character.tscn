@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://cqvgg7e08360b"]
+
+[ext_resource type="Script" path="res://Scripts/Character.gd" id="1_jbuep"]
+[ext_resource type="Texture2D" uid="uid://cf13amhi4mo2e" path="res://Assets/Sprites/TestPlayer/Idle__5.png" id="2_61muf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_os3o6"]
+size = Vector2(23, 32)
+
+[node name="Character" type="CharacterBody2D"]
+collision_mask = 2
+script = ExtResource("1_jbuep")
+character_name = null
+player_num = null
+collision_width = null
+collision_height = null
+collision_position = null
+crouch_collision_width = null
+crouch_collision_height = 25
+crouch_collision_position = Vector2(0, 3.5)
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_os3o6")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_61muf")
+hframes = 5
+
+[node name="HitstopTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="HitstopTimer" to="." method="_on_hitstop_timer_timeout"]
