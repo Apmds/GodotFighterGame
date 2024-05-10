@@ -8,6 +8,7 @@ enum WindowParams {
     VELOCITY_TYPE,          # 0 for setting the velocity to (VELOCITY_X, VELOCITY_Y) on the first frame, 1 for adding to the current velocity
     VELOCITY_X,
     VELOCITY_Y,
+    HAS_WHIFFLAG,           # Window will be 1.5x the size if the attack missed
 }
 
 var params = {
@@ -17,6 +18,7 @@ var params = {
     WindowParams.VELOCITY_TYPE: 1,
     WindowParams.VELOCITY_X : 0,
     WindowParams.VELOCITY_Y : 0,
+    WindowParams.HAS_WHIFFLAG: false,
 }
 
 func set_param(param : WindowParams, value) -> void:

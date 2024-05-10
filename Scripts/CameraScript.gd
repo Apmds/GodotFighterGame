@@ -11,13 +11,13 @@ func _ready():
 	position = start_position
 
 # Shakes the camera with some intensity for some number of frames
-func shake(frames : int = 5, intensity : float = 1.0) -> void:
+func shake(frames : int = 15, intensity : float = 5.0) -> void:
 	for i in range(frames):
 		offset = Vector2(randf_range(-1.0, 1.0) * intensity, randf_range(-1.0, 1.0) * intensity)
 		await get_tree().process_frame
 
 # Zooms into the desired node for the desired time in seconds
-func zoom_into(node : Node, zoom_level : float = 1.5, time : float = 2):
+func zoom_into(node : Node, zoom_level : float = 1.2, time : float = 0.2):
 	focused_node = node
 	focus_zoom = zoom_level
 	

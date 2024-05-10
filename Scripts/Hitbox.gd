@@ -17,7 +17,6 @@ var direction : int = 1
 var sprite_name : String = ""
 var current_frame : float = 0
 var anim_speed : float = 0.2
-var whifflag : float = 0.1          # Time in seconds that the player has to wait if they miss the attack
 var player : Character				# The player whose this hitbox belongs to
 
 var current_length : int = length
@@ -89,7 +88,7 @@ func _physics_process(delta : float) -> void:
 	if current_length == 0:
 		current_length = length
 		if player.state != Character.State.HIT:
-			player.start_hitstop(whifflag)
+			player.missed_attack = true
 		queue_free()
 		#get_parent().remove_child(self)
 		#for child in get_children():
@@ -117,7 +116,6 @@ func clone() -> Hitbox:
 	new_hitbox.sprite_name = sprite_name
 	new_hitbox.current_frame = current_frame
 	new_hitbox.anim_speed = anim_speed
-	new_hitbox.whifflag = whifflag
 
 	new_hitbox.current_length = length
 

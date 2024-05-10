@@ -28,6 +28,6 @@ func _process(_delta):
 	$HUD/Hp1.size.x = 240 * (float(player1.health)/float(player1.MAX_HEALTH))
 	$HUD/Hp2.size.x = 240 * (float(player2.health)/float(player2.MAX_HEALTH))
 
-func _on_attack_parried(body : Character):
+func _on_attack_parried(_body : Character):
 	camera.shake()
-	camera.zoom_into(body)
+	#camera.zoom_into(body)

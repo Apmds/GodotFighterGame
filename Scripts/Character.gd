@@ -38,12 +38,16 @@ class Attack:
 			# Length of the window converted from 60 fps to the current fps
 			var fps = Engine.get_frames_per_second()
 			var length = (float(fps)/float(60)) * window.params.get(AttackWindow.WindowParams.LENGTH)
-			#print("Length: " + str(length))
+			if obj.missed_attack:
+				obj.missed_attack = false
+				if window.params.get(AttackWindow.WindowParams.HAS_WHIFFLAG):
+					length *= 1.5
+			#print("\nLength: " + str(length))
 			
 			# How much time(in frames) each frame of animation can be on screen
 			var frame_time : float = float(length)/float(window.params.get(AttackWindow.WindowParams.NUM_FRAMES))
 			
-			#print("\nFrame_time: " + str(frame_time))
+			#print("Frame_time: " + str(frame_time))
 
 			# Setting attack hitbox
 			for hitbox in hitboxes:
@@ -78,6 +82,7 @@ class Attack:
 			#print("End of frame")
 
 		playing = false
+		obj.missed_attack = false
 		obj.current_attack = null
 		if obj.state == State.ATTACK:
 			obj.set_state(State.IDLE)
@@ -138,6 +143,7 @@ var weak_attack : Attack = Attack.new()
 var strong_attack : Attack = Attack.new()
 var special_attack : Attack = Attack.new()
 var current_attack : Attack
+var missed_attack = false
 
 # Movement
 var GROUND_SPEED : float = 300.0
@@ -296,7 +302,7 @@ func _ready():
 	weak_w2.set_param(AttackWindow.WindowParams.NUM_FRAMES, 1)
 
 	var weak_w3 = AttackWindow.new()
-	weak_w3.set_param(AttackWindow.WindowParams.LENGTH, 3)
+	weak_w3.set_param(AttackWindow.WindowParams.LENGTH, 10)
 	weak_w3.set_param(AttackWindow.WindowParams.START_FRAME, 2)
 	weak_w3.set_param(AttackWindow.WindowParams.NUM_FRAMES, 1)
 
@@ -322,15 +328,16 @@ func _ready():
 	strong_w1.set_param(AttackWindow.WindowParams.NUM_FRAMES, 2)
 
 	var strong_w2 = AttackWindow.new()
-	strong_w2.set_param(AttackWindow.WindowParams.LENGTH, 8)
+	strong_w2.set_param(AttackWindow.WindowParams.LENGTH, 10)
 	strong_w2.set_param(AttackWindow.WindowParams.START_FRAME, 2)
 	strong_w2.set_param(AttackWindow.WindowParams.NUM_FRAMES, 3)
 	strong_w2.set_param(AttackWindow.WindowParams.VELOCITY_X, 200)
 
 	var strong_w3 = AttackWindow.new()
-	strong_w3.set_param(AttackWindow.WindowParams.LENGTH, 4)
+	strong_w3.set_param(AttackWindow.WindowParams.LENGTH, 10)
 	strong_w3.set_param(AttackWindow.WindowParams.START_FRAME, 5)
 	strong_w3.set_param(AttackWindow.WindowParams.NUM_FRAMES, 3)
+	strong_w3.set_param(AttackWindow.WindowParams.HAS_WHIFFLAG, true)
 
 	strong_attack.add_window(strong_w1)
 	strong_attack.add_window(strong_w2)
@@ -339,10 +346,10 @@ func _ready():
 	var strong_h1 = Hitbox.new(self)
 	strong_h1.length = 6
 	strong_h1.window_number = 1
-	strong_h1.width = 15
-	strong_h1.height = 25
-	strong_h1.position_x = 20
-	strong_h1.position_y = -7
+	strong_h1.width = 40
+	strong_h1.height = 20
+	strong_h1.position_x = 10
+	strong_h1.position_y = 5
 	strong_attack.add_hitbox(strong_h1)
 
 	special_attack.set_sprite("SpecialAttack", sprites["SpecialAttack"][1])
@@ -358,7 +365,7 @@ func _ready():
 	special_w2.set_param(AttackWindow.WindowParams.NUM_FRAMES, 1)
 
 	var special_w3 = AttackWindow.new()
-	special_w3.set_param(AttackWindow.WindowParams.LENGTH, 3)
+	special_w3.set_param(AttackWindow.WindowParams.LENGTH, 10)
 	special_w3.set_param(AttackWindow.WindowParams.START_FRAME, 3)
 	special_w3.set_param(AttackWindow.WindowParams.NUM_FRAMES, 2)
 
@@ -401,6 +408,8 @@ func _physics_process(delta : float) -> void:
 				velocity.x = direction * AIR_SPEED
 			if is_on_floor():
 				velocity.x = direction * GROUND_SPEED
+		else:
+			velocity.x = lerp(velocity.x, 0.0, friction)
 	else:
 		velocity.x = lerp(velocity.x, 0.0, friction)
 		#velocity.x = move_toward(velocity.x, 0, GROUND_SPEED)
@@ -464,7 +473,7 @@ func _on_attack_landed(body, area : Hitbox) -> void:
 	
 	if body.state == State.PARRY:
 		body.attack_parried.emit(body)
-		start_hitstop(2)
+		start_hitstop(1)
 	else:
 		body.take_damage(area.damage)
 

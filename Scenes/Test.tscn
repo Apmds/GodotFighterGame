@@ -28,21 +28,10 @@ shape = SubResource("RectangleShape2D_5jptb")
 
 [node name="Character" parent="Players" instance=ExtResource("1_otgvy")]
 position = Vector2(166, 203)
-character_name = null
-player_num = null
-collision_width = null
-collision_height = null
-collision_position = null
-crouch_collision_width = null
 
 [node name="Character2" parent="Players" instance=ExtResource("1_otgvy")]
 position = Vector2(375, 230)
-character_name = null
 player_num = 2
-collision_width = null
-collision_height = null
-collision_position = null
-crouch_collision_width = null
 
 [node name="Camera" type="Camera2D" parent="."]
 position = Vector2(320, 180)
