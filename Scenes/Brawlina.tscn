@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://dh14rs7g35ojg"]
+
+[ext_resource type="PackedScene" uid="uid://cqvgg7e08360b" path="res://Scenes/Character.tscn" id="1_7v0cb"]
+[ext_resource type="Script" path="res://Scripts/Brawlina.gd" id="2_6saio"]
+[ext_resource type="Texture2D" uid="uid://fngg04lrwrti" path="res://Assets/Sprites/Characters/Brawlina/Idle__4.png" id="3_ubnu7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_seqlq"]
+size = Vector2(25.25, 47)
+
+[node name="Brawlina" instance=ExtResource("1_7v0cb")]
+script = ExtResource("2_6saio")
+show_name = "Brawlina"
+character_name = "Brawlina"
+collision_width = 27
+collision_height = 48
+collision_position = Vector2(-1.75, 8)
+crouch_collision_height = 32
+crouch_collision_position = Vector2(0, 0)
+
+[node name="Collision" parent="." index="0"]
+position = Vector2(-1.75, 8)
+shape = SubResource("RectangleShape2D_seqlq")
+
+[node name="Sprite" parent="." index="1"]
+texture = ExtResource("3_ubnu7")
+hframes = 4

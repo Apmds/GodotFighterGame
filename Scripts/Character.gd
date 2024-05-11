@@ -262,35 +262,7 @@ func take_damage(dmg : int) -> void:
 	else:
 		start_hitstop()
 
-func _ready():
-	# Setting the collision size for the character
-	var shape = RectangleShape2D.new()
-	shape.size = Vector2(collision_width, collision_height)
-	collision_node.shape = shape
-	collision_node.position = collision_position
-	
-	var dir = DirAccess.open("res://Assets/Sprites/Characters/" + character_name)
-	if dir:
-		# Cycling trough all the files in the directory
-		dir.list_dir_begin()
-		var file_name = dir.get_next()
-		while file_name != "":
-			if !dir.current_is_dir() and !file_name.ends_with(".import"):
-				#print("Found file: " + file_name)
-
-				# Adding the sprite information to the sprites dict
-				var spr_name = file_name.split(".")[0]
-				var spr_frames = int(spr_name[-1])
-				var sprite = load("res://Assets/Sprites/Characters/" + character_name + "/" + file_name)
-
-				sprites[spr_name.substr(0, len(spr_name) - 3)] = [sprite, spr_frames]
-
-			file_name = dir.get_next()
-	else:
-		print("No folder with the name " + character_name)
-
-	set_state(State.IDLE)
-
+func set_attacks() -> void:
 	weak_attack.set_sprite("WeakAttack", sprites["WeakAttack"][1])
 	var weak_w1 = AttackWindow.new()
 	weak_w1.set_param(AttackWindow.WindowParams.LENGTH, 3)
@@ -386,6 +358,37 @@ func _ready():
 	special_h1.velocity_y = 0
 	special_h1.sprite_name = "nspecial_proj"
 	special_attack.add_hitbox(special_h1)
+
+func _ready():
+	# Setting the collision size for the character
+	var shape = RectangleShape2D.new()
+	shape.size = Vector2(collision_width, collision_height)
+	collision_node.shape = shape
+	collision_node.position = collision_position
+	
+	var dir = DirAccess.open("res://Assets/Sprites/Characters/" + character_name)
+	if dir:
+		# Cycling trough all the files in the directory
+		dir.list_dir_begin()
+		var file_name = dir.get_next()
+		while file_name != "":
+			if !dir.current_is_dir() and !file_name.ends_with(".import"):
+				#print("Found file: " + file_name)
+
+				# Adding the sprite information to the sprites dict
+				var spr_name = file_name.split(".")[0]
+				var spr_frames = int(spr_name.split("__")[1])
+				var sprite = load("res://Assets/Sprites/Characters/" + character_name + "/" + file_name)
+
+				sprites[spr_name.split("__")[0]] = [sprite, spr_frames]
+
+			file_name = dir.get_next()
+	else:
+		print("No folder with the name " + character_name)
+
+	set_state(State.IDLE)
+
+	set_attacks()
 
 func _physics_process(delta : float) -> void:
 

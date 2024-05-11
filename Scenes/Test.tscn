@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://6jn531p7iynf"]
+[gd_scene load_steps=6 format=3 uid="uid://6jn531p7iynf"]
 
 [ext_resource type="Script" path="res://Scripts/Level.gd" id="1_6ma67"]
 [ext_resource type="PackedScene" uid="uid://cqvgg7e08360b" path="res://Scenes/Character.tscn" id="1_otgvy"]
+[ext_resource type="PackedScene" uid="uid://dh14rs7g35ojg" path="res://Scenes/Brawlina.tscn" id="2_pwkc7"]
 [ext_resource type="Script" path="res://Scripts/CameraScript.gd" id="3_5xja5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5jptb"]
@@ -26,8 +27,8 @@ shape = SubResource("RectangleShape2D_5jptb")
 
 [node name="Players" type="Node2D" parent="."]
 
-[node name="Character" parent="Players" instance=ExtResource("1_otgvy")]
-position = Vector2(166, 203)
+[node name="Character" parent="Players" instance=ExtResource("2_pwkc7")]
+position = Vector2(166, 193)
 
 [node name="Character2" parent="Players" instance=ExtResource("1_otgvy")]
 position = Vector2(375, 230)

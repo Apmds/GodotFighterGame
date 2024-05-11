@@ -25,10 +25,10 @@ func _init():
 
 				# Adding the sprite information to the sprites dict
 				var spr_name = file_name.split(".")[0]
-				var spr_frames = int(spr_name[-1])
+				var spr_frames = int(spr_name.split("__")[1])
 				var sprite = load("res://Assets/Sprites/Stages/" + stage_name + "/" + file_name)
 
-				sprites[spr_name.substr(0, len(spr_name) - 3)] = [sprite, spr_frames]
+				sprites[spr_name.split("__")[0]] = [sprite, spr_frames]
 
 			file_name = dir.get_next()
 	else:

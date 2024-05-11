@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b8y214yhscgk3"
-path="res://.godot/imported/uair_3.png-60dc400835f4d675ebf5a59f652cb68f.ctex"
+uid="uid://ccbv584s0t4ha"
+path="res://.godot/imported/Run__10.png-7c3d2cf05fa2d3e9ef7fa2d8446d2a87.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Characters/TestPlayer/uair_3.png"
-dest_files=["res://.godot/imported/uair_3.png-60dc400835f4d675ebf5a59f652cb68f.ctex"]
+source_file="res://Assets/Sprites/Characters/Brawlina/Run__10.png"
+dest_files=["res://.godot/imported/Run__10.png-7c3d2cf05fa2d3e9ef7fa2d8446d2a87.ctex"]
 
 [params]
 
