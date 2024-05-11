@@ -124,7 +124,7 @@ var state : State = State.IDLE
 var anim_ended : bool = false
 
 # Animations
-var sprites = {}
+var sprites : Dictionary = {}
 
 var idle_anim_speed : float = 0.1
 var walk_anim_speed : float = 0.2

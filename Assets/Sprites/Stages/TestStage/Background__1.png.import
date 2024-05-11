@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://brc78u3dli2sq"
-path="res://.godot/imported/Ryu Stage.png-03702d72d336580f66de1fffb3bb3820.ctex"
+path="res://.godot/imported/Background__1.png-459267908ec25dc1c44a5a9e1936774f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Stages/TestStage/Ryu Stage.png"
-dest_files=["res://.godot/imported/Ryu Stage.png-03702d72d336580f66de1fffb3bb3820.ctex"]
+source_file="res://Assets/Sprites/Stages/TestStage/Background__1.png"
+dest_files=["res://.godot/imported/Background__1.png-459267908ec25dc1c44a5a9e1936774f.ctex"]
 
 [params]
 

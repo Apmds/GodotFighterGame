@@ -29,6 +29,12 @@ position = Vector2(320, 158)
 scale = Vector2(1, 1.317)
 texture = ExtResource("3_hbng7")
 
+[node name="ColorRect" type="ColorRect" parent="Background"]
+offset_top = 316.0
+offset_right = 640.0
+offset_bottom = 360.0
+color = Color(0.266667, 0.133333, 0.0666667, 1)
+
 [node name="Ground" type="StaticBody2D" parent="."]
 position = Vector2(320, 280)
 collision_layer = 2

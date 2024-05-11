@@ -1,4 +1,4 @@
-extends Node2D
+class_name Level extends Node2D
 
 @onready var camera : GameCamera = $Camera
 @onready var player1_hp_bar : ColorRect = $HUD/Player1/HPBar
@@ -7,16 +7,56 @@ extends Node2D
 @onready var player2_showname : Label = $HUD/Player2/Name
 var player1 : Character
 var player2 : Character
+var stage_name : String = "TestStage"
+var ground_level : float = 280
+
+var sprites : Dictionary = {}
+
+func _init():
+	# Loads the sprites
+	var dir = DirAccess.open("res://Assets/Sprites/Stages/" + stage_name)
+	if dir:
+		# Cycling trough all the files in the directory
+		dir.list_dir_begin()
+		var file_name = dir.get_next()
+		while file_name != "":
+			if !dir.current_is_dir() and !file_name.ends_with(".import"):
+				#print("Found file: " + file_name)
+
+				# Adding the sprite information to the sprites dict
+				var spr_name = file_name.split(".")[0]
+				var spr_frames = int(spr_name[-1])
+				var sprite = load("res://Assets/Sprites/Stages/" + stage_name + "/" + file_name)
+
+				sprites[spr_name.substr(0, len(spr_name) - 3)] = [sprite, spr_frames]
+
+			file_name = dir.get_next()
+	else:
+		push_error("No folder with the name " + name)
+	
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var players = $Players.get_children()
-	player1 = players[0]
+	if len(players) != 2:
+		assert(false, "There are not 2 players present on stage!")
+	
+	for player in players:
+		if player.player_num == 1 and player1 == null:
+			player1 = player
+		if player.player_num == 2 and player2 == null:
+			player2 = player
+	
+	if player1 == null or player2 == null:
+		assert(false, "There isn't a player 1 and a player 2 defined!")
+	
 	player1.connect("attack_parried", _on_attack_parried)
-
-	player2 = players[1]
 	player2.connect("attack_parried", _on_attack_parried)
 	
+	# Basic setup
+	$Ground.position.y = ground_level
+	$Background/StageBackground.texture = sprites.get("Background")[0]
+	$Background/StageBackground.hframes = sprites.get("Background")[1]
 	player1_showname.text = player1.show_name
 	player2_showname.text = player2.show_name
 
