@@ -1,0 +1,137 @@
+[gd_scene load_steps=7 format=3 uid="uid://dcggdov7wwam4"]
+
+[ext_resource type="Script" path="res://Scripts/Level.gd" id="1_uiqq2"]
+[ext_resource type="Script" path="res://Scripts/CameraScript.gd" id="1_yhex1"]
+[ext_resource type="Texture2D" uid="uid://brc78u3dli2sq" path="res://Assets/Sprites/Stages/TestStage/Ryu Stage.png" id="3_hbng7"]
+[ext_resource type="PackedScene" uid="uid://cqvgg7e08360b" path="res://Scenes/Character.tscn" id="4_0mnht"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xnvul"]
+size = Vector2(680, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r7rlw"]
+size = Vector2(20, 360)
+
+[node name="Level" type="Node2D"]
+texture_filter = 1
+texture_repeat = 1
+script = ExtResource("1_uiqq2")
+metadata/_edit_vertical_guides_ = [640.0]
+
+[node name="Camera" type="Camera2D" parent="."]
+position = Vector2(320, 180)
+position_smoothing_enabled = true
+script = ExtResource("1_yhex1")
+
+[node name="Background" type="Node2D" parent="."]
+
+[node name="Stage" type="Sprite2D" parent="Background"]
+position = Vector2(320, 158)
+scale = Vector2(1, 1.31667)
+texture = ExtResource("3_hbng7")
+
+[node name="ColorRect" type="ColorRect" parent="Background"]
+offset_top = 316.0
+offset_right = 640.0
+offset_bottom = 360.0
+color = Color(0.266667, 0.133333, 0.0666667, 1)
+
+[node name="Ground" type="StaticBody2D" parent="."]
+position = Vector2(320, 280)
+collision_layer = 2
+metadata/_edit_group_ = true
+
+[node name="ColorRect" type="ColorRect" parent="Ground"]
+visible = false
+offset_left = -340.0
+offset_top = -10.0
+offset_right = 340.0
+offset_bottom = 10.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Collision" type="CollisionShape2D" parent="Ground"]
+shape = SubResource("RectangleShape2D_xnvul")
+
+[node name="WallLeft" type="StaticBody2D" parent="."]
+position = Vector2(-30, 180)
+collision_layer = 2
+metadata/_edit_group_ = true
+
+[node name="ColorRect" type="ColorRect" parent="WallLeft"]
+offset_left = -10.0
+offset_top = -180.0
+offset_right = 10.0
+offset_bottom = 180.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Collision" type="CollisionShape2D" parent="WallLeft"]
+shape = SubResource("RectangleShape2D_r7rlw")
+
+[node name="WallRight" type="StaticBody2D" parent="."]
+position = Vector2(670, 180)
+collision_layer = 2
+metadata/_edit_group_ = true
+
+[node name="ColorRect" type="ColorRect" parent="WallRight"]
+offset_left = -10.0
+offset_top = -180.0
+offset_right = 10.0
+offset_bottom = 180.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Collision" type="CollisionShape2D" parent="WallRight"]
+shape = SubResource("RectangleShape2D_r7rlw")
+
+[node name="Players" type="Node2D" parent="."]
+
+[node name="Character" parent="Players" instance=ExtResource("4_0mnht")]
+position = Vector2(81, 138)
+
+[node name="Character2" parent="Players" instance=ExtResource("4_0mnht")]
+position = Vector2(483, 129)
+player_num = 2
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="Player1" type="Control" parent="HUD"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 30.0
+offset_top = 20.0
+offset_right = 70.0
+offset_bottom = 60.0
+
+[node name="HPBar" type="ColorRect" parent="HUD/Player1"]
+layout_mode = 0
+offset_right = 240.0
+offset_bottom = 40.0
+color = Color(1, 0, 0, 1)
+
+[node name="Name" type="Label" parent="HUD/Player1"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 42.0
+offset_right = 240.0
+offset_bottom = 65.0
+text = "###"
+
+[node name="Player2" type="Control" parent="HUD"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 370.0
+offset_top = 20.0
+offset_right = 410.0
+offset_bottom = 60.0
+
+[node name="HPBar" type="ColorRect" parent="HUD/Player2"]
+layout_mode = 0
+offset_right = 240.0
+offset_bottom = 40.0
+color = Color(1, 0, 0, 1)
+
+[node name="Name" type="Label" parent="HUD/Player2"]
+layout_mode = 0
+offset_top = 42.0
+offset_right = 240.0
+offset_bottom = 65.0
+text = "###"
+horizontal_alignment = 2

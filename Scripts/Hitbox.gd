@@ -110,6 +110,8 @@ func clone() -> Hitbox:
 	new_hitbox.position_y = position_y
 	new_hitbox.damage = damage
 	new_hitbox.type = type
+	if new_hitbox.type == 1:
+		new_hitbox.scale = Vector2(2, 2)
 	new_hitbox.velocity_x = velocity_x
 	new_hitbox.velocity_y = velocity_y
 	new_hitbox.direction = direction

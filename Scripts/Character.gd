@@ -104,6 +104,7 @@ class Attack:
 
 signal attack_parried(body : Character)
 
+@export var show_name : String = "TestPlayer"
 @export var character_name : String = "TestPlayer"
 @export_range(1, 3, 1) var player_num : int = 1 # 1 for player 1, 2 for player 2 and 3 for computer
 
@@ -268,7 +269,7 @@ func _ready():
 	collision_node.shape = shape
 	collision_node.position = collision_position
 	
-	var dir = DirAccess.open("res://Assets/Sprites/" + character_name)
+	var dir = DirAccess.open("res://Assets/Sprites/Characters/" + character_name)
 	if dir:
 		# Cycling trough all the files in the directory
 		dir.list_dir_begin()
@@ -280,7 +281,7 @@ func _ready():
 				# Adding the sprite information to the sprites dict
 				var spr_name = file_name.split(".")[0]
 				var spr_frames = int(spr_name[-1])
-				var sprite = load("res://Assets/Sprites/" + character_name + "/" + file_name)
+				var sprite = load("res://Assets/Sprites/Characters/" + character_name + "/" + file_name)
 
 				sprites[spr_name.substr(0, len(spr_name) - 3)] = [sprite, spr_frames]
 
@@ -449,19 +450,12 @@ func _physics_process(delta : float) -> void:
 		if anim_ended:
 			set_state(State.IDLE)
 	
-	
-
 	# How to animate each state
 	match state:
 		State.IDLE, State.WALK, State.RUN, State.FALL:
 			anim_ended = cycle_animate()
 		State.JUMP, State.HIT, State.DEAD, State.CROUCH, State.PARRY:
 			anim_ended = one_shot_animate()
-
-	if player_num == 1:
-		#print($HitstopTimer.time_left)
-		#print(state)
-		pass
 	
 	move_and_slide()
 
