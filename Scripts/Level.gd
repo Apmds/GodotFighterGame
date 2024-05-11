@@ -55,8 +55,9 @@ func _ready():
 	
 	# Basic setup
 	$Ground.position.y = ground_level
-	$Background/StageBackground.texture = sprites.get("Background")[0]
-	$Background/StageBackground.hframes = sprites.get("Background")[1]
+	if get_node_or_null("Background") != null and sprites.get("Background") != null:
+		$Background/StageBackground.texture = sprites.get("Background")[0]
+		$Background/StageBackground.hframes = sprites.get("Background")[1]
 	player1_showname.text = player1.show_name
 	player2_showname.text = player2.show_name
 
