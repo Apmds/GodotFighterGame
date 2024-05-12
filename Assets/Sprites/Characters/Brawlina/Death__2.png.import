@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://n7vhrolppcec"
-path="res://.godot/imported/Death__1.png-6fa7cbe9c2083bc6940747b90d8d9d2d.ctex"
+uid="uid://c1po0dt5yewx0"
+path="res://.godot/imported/Death__2.png-d4a120af2c0ea3fbb4b8b74e3f8663ba.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Characters/Brawlina/Death__1.png"
-dest_files=["res://.godot/imported/Death__1.png-6fa7cbe9c2083bc6940747b90d8d9d2d.ctex"]
+source_file="res://Assets/Sprites/Characters/Brawlina/Death__2.png"
+dest_files=["res://.godot/imported/Death__2.png-d4a120af2c0ea3fbb4b8b74e3f8663ba.ctex"]
 
 [params]
 

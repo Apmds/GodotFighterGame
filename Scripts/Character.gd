@@ -142,6 +142,8 @@ var current_frame : float = 0
 # Attacks
 var weak_attack : Attack = Attack.new()
 var strong_attack : Attack = Attack.new()
+var weak_air_attack : Attack = Attack.new()
+var strong_air_attack : Attack = Attack.new()
 var special_attack : Attack = Attack.new()
 var current_attack : Attack
 var missed_attack = false
@@ -325,6 +327,7 @@ func set_attacks() -> void:
 	strong_h1.position_y = 5
 	strong_attack.add_hitbox(strong_h1)
 
+
 	special_attack.set_sprite("SpecialAttack", sprites["SpecialAttack"][1])
 
 	var special_w1 = AttackWindow.new()
@@ -358,6 +361,70 @@ func set_attacks() -> void:
 	special_h1.velocity_y = 0
 	special_h1.sprite_name = "nspecial_proj"
 	special_attack.add_hitbox(special_h1)
+
+
+	weak_air_attack.set_sprite("AirWeakAttack", sprites["AirWeakAttack"][1])
+	var weak_air_w1 = AttackWindow.new()
+	weak_air_w1.set_param(AttackWindow.WindowParams.LENGTH, 3)
+	weak_air_w1.set_param(AttackWindow.WindowParams.START_FRAME, 0)
+	weak_air_w1.set_param(AttackWindow.WindowParams.NUM_FRAMES, 1)
+
+	var weak_air_w2 = AttackWindow.new()
+	weak_air_w2.set_param(AttackWindow.WindowParams.LENGTH, 6)
+	weak_air_w2.set_param(AttackWindow.WindowParams.START_FRAME, 1)
+	weak_air_w2.set_param(AttackWindow.WindowParams.NUM_FRAMES, 2)
+
+	var weak_air_w3 = AttackWindow.new()
+	weak_air_w3.set_param(AttackWindow.WindowParams.LENGTH, 10)
+	weak_air_w3.set_param(AttackWindow.WindowParams.START_FRAME, 3)
+	weak_air_w3.set_param(AttackWindow.WindowParams.NUM_FRAMES, 1)
+
+	weak_air_attack.add_window(weak_air_w1)
+	weak_air_attack.add_window(weak_air_w2)
+	weak_air_attack.add_window(weak_air_w3)
+
+	var weak_air_h1 = Hitbox.new(self)
+	
+	weak_air_h1.length = 6
+	weak_air_h1.window_number = 1
+	weak_air_h1.width = 24.5
+	weak_air_h1.height = 35
+	weak_air_h1.position_x = 35
+	weak_air_h1.position_y = 3
+	weak_air_attack.add_hitbox(weak_air_h1)
+
+
+	strong_air_attack.set_sprite("AirStrongAttack", sprites["AirStrongAttack"][1])
+	var strong_air_w1 = AttackWindow.new()
+	strong_air_w1.set_param(AttackWindow.WindowParams.LENGTH, 6)
+	strong_air_w1.set_param(AttackWindow.WindowParams.START_FRAME, 0)
+	strong_air_w1.set_param(AttackWindow.WindowParams.NUM_FRAMES, 2)
+
+	var strong_air_w2 = AttackWindow.new()
+	strong_air_w2.set_param(AttackWindow.WindowParams.LENGTH, 10)
+	strong_air_w2.set_param(AttackWindow.WindowParams.START_FRAME, 2)
+	strong_air_w2.set_param(AttackWindow.WindowParams.NUM_FRAMES, 3)
+	strong_air_w2.set_param(AttackWindow.WindowParams.VELOCITY_X, 200)
+	strong_air_w2.set_param(AttackWindow.WindowParams.VELOCITY_Y, -40)
+
+	var strong_air_w3 = AttackWindow.new()
+	strong_air_w3.set_param(AttackWindow.WindowParams.LENGTH, 10)
+	strong_air_w3.set_param(AttackWindow.WindowParams.START_FRAME, 5)
+	strong_air_w3.set_param(AttackWindow.WindowParams.NUM_FRAMES, 3)
+	strong_air_w3.set_param(AttackWindow.WindowParams.HAS_WHIFFLAG, true)
+
+	strong_air_attack.add_window(strong_air_w1)
+	strong_air_attack.add_window(strong_air_w2)
+	strong_air_attack.add_window(strong_air_w3)
+
+	var strong_air_h1 = Hitbox.new(self)
+	strong_air_h1.length = 6
+	strong_air_h1.window_number = 1
+	strong_air_h1.width = 40
+	strong_air_h1.height = 20
+	strong_air_h1.position_x = 10
+	strong_air_h1.position_y = 5
+	strong_air_attack.add_hitbox(strong_air_h1)
 
 func _ready():
 	# Setting the collision size for the character
@@ -440,15 +507,24 @@ func _physics_process(delta : float) -> void:
 		var strong_pressed = Input.is_action_just_pressed(get_action("strong"))
 		var special_pressed = Input.is_action_just_pressed(get_action("special"))
 
-		if (weak_pressed or strong_pressed or special_pressed) and (state == State.CROUCH or state == State.IDLE):
+		if (weak_pressed or strong_pressed or special_pressed) and (state == State.CROUCH or state == State.IDLE or not is_on_floor()):
 			set_state(State.ATTACK)
 
 			if weak_pressed:
-				weak_attack.play(self)
+				if is_on_floor():
+					weak_attack.play(self)
+				else:
+					weak_air_attack.play(self)
 			elif strong_pressed:
-				strong_attack.play(self)
+				if is_on_floor():
+					strong_attack.play(self)
+				else:
+					strong_air_attack.play(self)
 			elif special_pressed:
-				special_attack.play(self)
+				if is_on_floor():
+					special_attack.play(self)
+				else:
+					set_state(State.IDLE)
 	elif state == State.PARRY:
 		if anim_ended:
 			set_state(State.IDLE)
