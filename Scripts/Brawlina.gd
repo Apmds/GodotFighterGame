@@ -63,41 +63,40 @@ func set_attacks():
 	strong_h1.position_x = 10
 	strong_h1.position_y = 5
 	strong_attack.add_hitbox(strong_h1)
-
-	#special_attack.set_sprite("SpecialAttack", sprites["SpecialAttack"][1])
-	#
-	#var special_w1 = AttackWindow.new()
-	#special_w1.set_param(AttackWindow.WindowParams.LENGTH, 3)
-	#special_w1.set_param(AttackWindow.WindowParams.START_FRAME, 0)
-	#special_w1.set_param(AttackWindow.WindowParams.NUM_FRAMES, 2)
-	#
-	#var special_w2 = AttackWindow.new()
-	#special_w2.set_param(AttackWindow.WindowParams.LENGTH, 6)
-	#special_w2.set_param(AttackWindow.WindowParams.START_FRAME, 2)
-	#special_w2.set_param(AttackWindow.WindowParams.NUM_FRAMES, 1)
-	#
-	#var special_w3 = AttackWindow.new()
-	#special_w3.set_param(AttackWindow.WindowParams.LENGTH, 10)
-	#special_w3.set_param(AttackWindow.WindowParams.START_FRAME, 3)
-	#special_w3.set_param(AttackWindow.WindowParams.NUM_FRAMES, 2)
-	#
-	#special_attack.add_window(special_w1)
-	#special_attack.add_window(special_w2)
-	#special_attack.add_window(special_w3)
-	#
-	#var special_h1 = Hitbox.new(self)
-	#special_h1.length = 60
-	#special_h1.window_number = 1
-	#special_h1.type = 1
-	#special_h1.width = 15
-	#special_h1.height = 25
-	#special_h1.position_x = 20
-	#special_h1.position_y = -7
-	#special_h1.velocity_x = 200
-	#special_h1.velocity_y = 0
-	#special_h1.sprite_name = "nspecial_proj"
-	#special_attack.add_hitbox(special_h1)
-
+	
+	special_attack.set_sprite("SpecialAttack", sprites["SpecialAttack"][1])
+	
+	var special_w1 = AttackWindow.new()
+	special_w1.set_param(AttackWindow.WindowParams.LENGTH, 3)
+	special_w1.set_param(AttackWindow.WindowParams.START_FRAME, 0)
+	special_w1.set_param(AttackWindow.WindowParams.NUM_FRAMES, 2)
+	
+	var special_w2 = AttackWindow.new()
+	special_w2.set_param(AttackWindow.WindowParams.LENGTH, 6)
+	special_w2.set_param(AttackWindow.WindowParams.START_FRAME, 2)
+	special_w2.set_param(AttackWindow.WindowParams.NUM_FRAMES, 1)
+	
+	var special_w3 = AttackWindow.new()
+	special_w3.set_param(AttackWindow.WindowParams.LENGTH, 10)
+	special_w3.set_param(AttackWindow.WindowParams.START_FRAME, 3)
+	special_w3.set_param(AttackWindow.WindowParams.NUM_FRAMES, 2)
+	
+	special_attack.add_window(special_w1)
+	special_attack.add_window(special_w2)
+	special_attack.add_window(special_w3)
+	
+	var special_h1 = Hitbox.new(self)
+	special_h1.length = 60
+	special_h1.window_number = 1
+	special_h1.type = 1
+	special_h1.width = 15
+	special_h1.height = 25
+	special_h1.position_x = 20
+	special_h1.position_y = -7
+	special_h1.velocity_x = 200
+	special_h1.velocity_y = 0
+	special_h1.sprite_name = "nspecial_proj"
+	special_attack.add_hitbox(special_h1)
 
 func _ready():
 	super()
