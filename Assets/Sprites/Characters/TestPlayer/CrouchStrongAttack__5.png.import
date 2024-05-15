@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ckcaoln4pky0f"
-path="res://.godot/imported/dstrong__5.png-6b6396359627e7be6a1b4d274fef5d8a.ctex"
+path="res://.godot/imported/CrouchStrongAttack__5.png-c0bd4f48a4773d96e3536c913b190c7f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Characters/TestPlayer/dstrong__5.png"
-dest_files=["res://.godot/imported/dstrong__5.png-6b6396359627e7be6a1b4d274fef5d8a.ctex"]
+source_file="res://Assets/Sprites/Characters/TestPlayer/CrouchStrongAttack__5.png"
+dest_files=["res://.godot/imported/CrouchStrongAttack__5.png-c0bd4f48a4773d96e3536c913b190c7f.ctex"]
 
 [params]
 

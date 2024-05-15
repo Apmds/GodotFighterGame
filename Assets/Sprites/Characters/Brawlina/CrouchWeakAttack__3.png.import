@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b5gefcd42h7pm"
-path="res://.godot/imported/dtilt__3.png-e12d3979440e9e6b610c4453f54c5b7d.ctex"
+uid="uid://dadkqboo3dxct"
+path="res://.godot/imported/CrouchWeakAttack__3.png-2924899d3f032ee2777ce75700b58a1f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Characters/TestPlayer/dtilt__3.png"
-dest_files=["res://.godot/imported/dtilt__3.png-e12d3979440e9e6b610c4453f54c5b7d.ctex"]
+source_file="res://Assets/Sprites/Characters/Brawlina/CrouchWeakAttack__3.png"
+dest_files=["res://.godot/imported/CrouchWeakAttack__3.png-2924899d3f032ee2777ce75700b58a1f.ctex"]
 
 [params]
 

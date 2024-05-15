@@ -30,7 +30,6 @@ shape = SubResource("RectangleShape2D_5jptb")
 
 [node name="Character" parent="Players" instance=ExtResource("2_pwkc7")]
 position = Vector2(192, 215)
-player_num = null
 
 [node name="Character2" parent="Players" instance=ExtResource("1_otgvy")]
 position = Vector2(345, 245)
