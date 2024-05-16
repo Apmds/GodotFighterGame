@@ -13,12 +13,12 @@ show_name = "Brawlina"
 character_name = "Brawlina"
 collision_width = 27
 collision_height = 48
-collision_position = Vector2(-1.75, 8.5)
+collision_position = Vector2(-1.75, 7.5)
 crouch_collision_width = 27
-crouch_collision_position = Vector2(-1.75, 20)
+crouch_collision_position = Vector2(-1.75, 18.75)
 
 [node name="Collision" parent="." index="0"]
-position = Vector2(-1.75, 8.5)
+position = Vector2(-1.5, 7.5)
 shape = SubResource("RectangleShape2D_seqlq")
 
 [node name="Sprite" parent="." index="1"]

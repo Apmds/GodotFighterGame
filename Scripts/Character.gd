@@ -176,14 +176,14 @@ func set_sprite(spr_name : String) -> void:
 	sprite_node.texture = sprites.get(spr_name)[0]
 	sprite_node.hframes = sprites.get(spr_name)[1]
 
-func set_state(new_state : State) -> void:
+func set_state(new_state : State, keep_crouch : bool = false) -> void:
 	# If the last state is different from the current state, reset the current_frame
 	if state != new_state:
 		current_frame = 0
 	
 	state = new_state
 
-	if new_state != State.CROUCH:
+	if new_state != State.CROUCH and !keep_crouch:
 		collision_node.position = collision_position
 		collision_node.shape.size = Vector2(collision_width, collision_height)
 	
@@ -574,7 +574,7 @@ func _physics_process(delta : float) -> void:
 		var special_pressed = Input.is_action_just_pressed(get_action("special"))
 
 		if (weak_pressed or strong_pressed or special_pressed) and (state == State.CROUCH or state == State.IDLE or not is_on_floor()):
-			set_state(State.ATTACK)
+			set_state(State.ATTACK, state == State.CROUCH)
 
 			if weak_pressed:
 				if is_on_floor():

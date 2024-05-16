@@ -162,6 +162,67 @@ func set_attacks():
 	strong_air_h1.position_y = 5
 	strong_air_attack.add_hitbox(strong_air_h1)
 
-func _ready():
-	super()
+
+	weak_crouch_attack.set_sprite("CrouchWeakAttack", sprites["CrouchWeakAttack"][1])
+	var weak_crouch_w1 = AttackWindow.new()
+	weak_crouch_w1.set_param(AttackWindow.WindowParams.LENGTH, 3)
+	weak_crouch_w1.set_param(AttackWindow.WindowParams.START_FRAME, 0)
+	weak_crouch_w1.set_param(AttackWindow.WindowParams.NUM_FRAMES, 1)
+
+	var weak_crouch_w2 = AttackWindow.new()
+	weak_crouch_w2.set_param(AttackWindow.WindowParams.LENGTH, 6)
+	weak_crouch_w2.set_param(AttackWindow.WindowParams.START_FRAME, 1)
+	weak_crouch_w2.set_param(AttackWindow.WindowParams.NUM_FRAMES, 2)
+
+	var weak_crouch_w3 = AttackWindow.new()
+	weak_crouch_w3.set_param(AttackWindow.WindowParams.LENGTH, 10)
+	weak_crouch_w3.set_param(AttackWindow.WindowParams.START_FRAME, 3)
+	weak_crouch_w3.set_param(AttackWindow.WindowParams.NUM_FRAMES, 1)
+
+	weak_crouch_attack.add_window(weak_crouch_w1)
+	weak_crouch_attack.add_window(weak_crouch_w2)
+	weak_crouch_attack.add_window(weak_crouch_w3)
+
+	var weak_crouch_h1 = Hitbox.new(self)
+
+	weak_crouch_h1.length = 6
+	weak_crouch_h1.window_number = 1
+	weak_crouch_h1.width = 24.5
+	weak_crouch_h1.height = 35
+	weak_crouch_h1.position_x = 35
+	weak_crouch_h1.position_y = 3
+	weak_crouch_attack.add_hitbox(weak_crouch_h1)
+
+
+	strong_crouch_attack.set_sprite("CrouchStrongAttack", sprites["CrouchStrongAttack"][1])
+	var strong_crouch_w1 = AttackWindow.new()
+	strong_crouch_w1.set_param(AttackWindow.WindowParams.LENGTH, 6)
+	strong_crouch_w1.set_param(AttackWindow.WindowParams.START_FRAME, 0)
+	strong_crouch_w1.set_param(AttackWindow.WindowParams.NUM_FRAMES, 2)
+
+	var strong_crouch_w2 = AttackWindow.new()
+	strong_crouch_w2.set_param(AttackWindow.WindowParams.LENGTH, 10)
+	strong_crouch_w2.set_param(AttackWindow.WindowParams.START_FRAME, 2)
+	strong_crouch_w2.set_param(AttackWindow.WindowParams.NUM_FRAMES, 3)
+	strong_crouch_w2.set_param(AttackWindow.WindowParams.VELOCITY_X, 200)
+	strong_crouch_w2.set_param(AttackWindow.WindowParams.VELOCITY_Y, -40)
+
+	var strong_crouch_w3 = AttackWindow.new()
+	strong_crouch_w3.set_param(AttackWindow.WindowParams.LENGTH, 10)
+	strong_crouch_w3.set_param(AttackWindow.WindowParams.START_FRAME, 5)
+	strong_crouch_w3.set_param(AttackWindow.WindowParams.NUM_FRAMES, 3)
+	strong_crouch_w3.set_param(AttackWindow.WindowParams.HAS_WHIFFLAG, true)
+
+	strong_crouch_attack.add_window(strong_crouch_w1)
+	strong_crouch_attack.add_window(strong_crouch_w2)
+	strong_crouch_attack.add_window(strong_crouch_w3)
+
+	var strong_crouch_h1 = Hitbox.new(self)
+	strong_crouch_h1.length = 6
+	strong_crouch_h1.window_number = 1
+	strong_crouch_h1.width = 40
+	strong_crouch_h1.height = 20
+	strong_crouch_h1.position_x = 10
+	strong_crouch_h1.position_y = 5
+	strong_crouch_attack.add_hitbox(strong_crouch_h1)
 
